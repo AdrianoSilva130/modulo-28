@@ -1,4 +1,6 @@
 import http from "k6/http"
+import { check } from "k6"
+import Utils from "../utils/utils"
 
 export default class Login {
     #token
