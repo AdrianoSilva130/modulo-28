@@ -6,7 +6,7 @@ export default class Login {
     #token
 
     access(user, pass) {
-        let response = http.post(`${Utils.getbaseUrl()}/login`, JSON.stringify(
+        let response = http.post(`${Utils.getBaseUrl()}/login`, JSON.stringify(
             {
                 "username": user,
                 "password": pass
