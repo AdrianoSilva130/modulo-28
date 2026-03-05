@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "pretest": "webpack",
-    "test": "k6 run dist/user.test.js"
+    "test": "k6 run dist/user.test.js",
+    "test:produtos": "k6 run ./simulations/exercicio-produtos/produtos.test.js",
+    "test:clientes": "k6 run simulations/exercicio-clientes/clientes.test.js"
   },
   "author": "Adriano Silva",
   "license": "ISC",

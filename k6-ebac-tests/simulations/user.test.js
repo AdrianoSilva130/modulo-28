@@ -26,6 +26,7 @@ export default function () {
   })
 
   group('list users', () => {
+    console.log("TOKEN:", login.getToken())
     user.list(login.getToken())
   })
 }

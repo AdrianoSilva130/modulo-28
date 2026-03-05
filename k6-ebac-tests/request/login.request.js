@@ -1,30 +1,37 @@
 import http from "k6/http"
 import { check } from "k6"
-import Utils from "../utils/utils"
+import Utils from "../utils/utils.js"
 
 export default class Login {
+
     #token
 
     access(user, pass) {
-        let response = http.post(`${Utils.getBaseUrl()}/login`, JSON.stringify(
+
+        let response = http.post(`${Utils.getBaseUrl()}/login`,
+            JSON.stringify({
+                username: user,
+                password: pass
+            }),
             {
-                "username": user,
-                "password": pass
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                }
             }
-        ), {
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            }
-        })
-        this.#token = response.json('acessToken')
+        )
+
+        console.log("BODY:", response.body)
+
+        this.#token = response.json().accessToken
+        console.log("TOKEN:", this.#token)
+
         check(response, {
             "status deve ser 201": (r) => r.status === 201
-        });
-        
-        }
-        getToken() {
-            return this.#token
+        })
+    }
+
+    getToken() {
+        return this.#token
     }
 }
-
